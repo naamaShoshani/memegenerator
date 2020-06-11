@@ -1,21 +1,22 @@
 'use strict'
 
-
 var gMeme = {
   selectedImgId: 5,
   txts: []
 };
+
 function assignTxt(txtToAssign) {
   if (txtToAssign.str !== '') gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
-  //added textareaidx:
   setCanvas(gMeme.txts, txtToAssign);
 }
+
 function resetMemeModel(id) {
   gMeme = {
     selectedImgId: id,
     txts: []
   };
 }
+
 function getActiveTextareaLastTxt(idx) {
   var defaultTxt = {
     str: '',
@@ -31,17 +32,21 @@ function getActiveTextareaLastTxt(idx) {
 
   return gMeme.txts[idx];
 }
+
 function filterTxtsByTextareaIdx(txts, textareaIdx) {
   return txts.filter(function (txt) {
     return txt.textareaIdx !== textareaIdx;
   });
 }
+
 function getMemeTxts() {
   return gMeme.txts;
 }
+
 function updateFontSizeTxt(txt, diff) {
   txt.size += diff;
 }
+
 function updateTxtAt(param, idx, type) {
   var currTxt = gMeme.txts[idx];
   if (!currTxt) return;
@@ -87,12 +92,15 @@ function updateTxtAt(param, idx, type) {
   }
   setCanvas(gMeme.txts, currTxt);
 }
+
 function getCurrId() {
   return gMeme.selectedImgId;
 }
+
 function getTxtsLength() {
   return gMeme.txts.length;
 }
+
 function getMouseMatchTxtIdx(x, y) {
   return gMeme.txts.findIndex(function (txt) {
     return y >= txt.line - 13 - txt.size && y <= txt.line - 13;

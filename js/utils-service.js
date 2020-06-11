@@ -6,6 +6,14 @@ function sliceFromStrByIdx(idx, word) {
     }
     return slicedWord;
 }
+function savePopularMapToStorage(popularImgsMap) {
+    localStorage.setItem(MAP_KEY, JSON.stringify(popularImgsMap));
+}
+function loadPopularMapFromStorage() {
+    var popularImgsMap;
+    popularImgsMap = JSON.parse(localStorage.getItem(MAP_KEY));
+    return popularImgsMap;
+}
 
 function getXforAlign(width, align) {
     switch (align) {

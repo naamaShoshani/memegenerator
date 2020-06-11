@@ -2,21 +2,61 @@
   box-sizing: border-box;
 }
 
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
 body {
   margin: 0;
-  font-family: 'Arvo', serif;
+  /* font-family: 'Arvo', serif; */
+  font-family: 'Michroma', sans-serif;
 }
+
+@font-face {
+  font-family: 'Michroma', sans-serif;
+  src: url('../fonts/Michroma-Regular.ttf')
+}
+
 
 h1 {
   text-align: center;
   width: 100%;
-  /* color: #f44336; */
-  color: Black;
+  color: #ebbe25;
   font-weight: bold;
+  /* font-size: 3.2rem; */
   font-size: 2.5rem;
   font-family: 'Michroma', sans-serif;
   margin: 0;
   }
+
+  h2 {
+  text-align: center;
+  color: #f44336;
+  background-color: #ebbe25;;
+  font-weight: bold;
+  font-family: 'Michroma', sans-serif;
+}
+
+
+h3 {
+  color: #f44336;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Michroma', sans-serif;
+}
+
+.select-lang {
+  font-weight: bold;
+  border: none;
+  color: #f44336;
+  background-color: #ebbe25;
+  border-radius: 20px;
+  padding: 5px;
+}
 
 main {
   flex-direction: column;
@@ -28,7 +68,7 @@ main {
 
 header {
   height: 50px;
-
+  background-color: #f44336;
   width: 100%;
   height: 2%;
   padding: 2%;
@@ -36,24 +76,16 @@ header {
   font-weight: bold;
 }
 
-.input-container{
-  flex-direction: column;
-}
-
-nav{
+/* Menu */
+nav {
     justify-content: space-around;
     width: 100%;
     height: 100%;
     align-items: center;
     padding: 0 20%;
 }
-nav a{
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-}
 
-
+/* Meme Images */
 .imgs-container {
   width: 100%;
   max-width: 70rem;
@@ -61,33 +93,42 @@ nav a{
   align-content: center;
 }
 
-.clean-list {
+
+/* Main Page Meme List Style */
+.meme-list {
   list-style-type: none;
   padding: 0;
 }
 
+/* Main Page Meme Shape and Pointer */
 .img-pick {
 cursor: pointer;
-border-radius: 10px;
+border-radius: 25px;
 }
 
+/* .img-hover{
+  position: absolute;
+  width:inherit;
+  height: 0;
+  transition: all ease 0.5s;
+  opacity: 0;
+  background: rgba(2, 2, 2, 0.8);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+} */
 
 
-.load-imgs-container{
+/* .load-imgs-container{
+    background-color:blue;
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 .load-container{
     justify-content: space-between;
-}
-main a{
-    text-decoration: none;
-    color: black;
-}
-.input-btn {
-  width: 20px;
-  height: 10px;
-}
+} */
+
 ul.container {
   width: 100%;
   display: flex;
@@ -107,6 +148,14 @@ ul.container {
   background-position: center center;
 }
 
+textarea{
+  height: 80px;
+  }
+  
+form input{
+  padding: 5px;
+  }
+
 .modal {
   width: 100%;
   height: 100%;
@@ -114,7 +163,7 @@ ul.container {
   position: fixed;
   bottom: 0;
   right: 0;
-  background-color: white;
+  background: url('../img/banana.jpg') center;
   transition: all 1s;
 }
 
@@ -132,14 +181,63 @@ ul.container {
   align-items: center;
 }
 
+.img-canvas{
+  max-width: 100%;
+  width: 350px;
+  height: auto;
+  margin: 0;
+  border: 5px #aa720b solid;
+  border-radius: 10px;
+}
+
+.centerer{
+  width: 40px;
+  height: 40px;
+}
+.add-line-container{
+  font-size: 1.1rem;
+}
+
+
+.textareas-container {
+  max-width: 100%;
+  margin: 0 10px 10px 10px;
+}
+
+
+/* Text Area Placeholder */
+.add-line-container textarea {
+  height: 3rem;;
+  background: #ffbb003a;
+  color: #aa720b;
+  margin-bottom: 10px;
+  font-family: 'Michroma', sans-serif;
+  padding: 16px 0px 0 8px;
+  font-size: inherit;
+}
+
+.add-line-container textarea::placeholder{
+  color: #aa720b;
+  font-weight: bold;
+  font-size: inherit;
+  }
+
 .modal-content .btn {
   width: 33px; 
   height: 26px;
 }
 
+.btn.ctrl-btn {
+  background: #aa720b;
+  color: #ebbe25;
+  border: none;
+  font-size: inherit;
+  margin-bottom: 10px;
+}
+
 .show-curr-line {
-  color: Black;
-  font-size: 1rem;
+  color: #aa720b;
+  font-size: 0.7rem;
  font-family: 'Michroma', sans-serif;
   font-weight: bold;
   padding: 4px 0;
@@ -147,6 +245,55 @@ ul.container {
   text-align: center;
   align-items: center;
   transform: scale(2,2);
+}
+
+.browse-txts-container {
+  border-radius: 10px;
+}
+
+.btn.ctrl-btn:first-of-type {
+  cursor: default;
+}
+
+/* Previous and Add or Next Line Buttons */
+.btn.browse-btn {
+  border: none;
+  color: #ebbe25;
+  background: #aa720b;
+  font-size: inherit;
+  width: 7rem;
+  height: 3rem;
+  font-family: 'Michroma', sans-serif;
+}
+
+.action-line-wrapper {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn.download-btn {
+  background: #aa720b;
+  height: 3rem;
+  width: 2rem;
+}
+
+.btn.download-btn, .btn.share-btn {
+  border-radius: 7px;
+  border: none;
+  font-size: 10px;
+}
+
+.font-pick-bar {
+  margin: 0;
+  justify-content: space-evenly;
+  color: #ebbe25;
+  background: #aa720b;
+  border-radius: 5px;
+  padding: 1px 10px;
+}
+
+.font-pick-bar li {
+  cursor: pointer;
 }
 
 .pick-times-nr {
@@ -161,18 +308,35 @@ ul.container {
   font-family: Impact;
 }
 
+a {
+  color: white;
+    text-decoration: none;
+}
 
+.btn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #aa720b;
+  color: #ebbe25;
+  border: none;
+  border-radius: 10px;
+}
 
+.btn.return-btn{
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.7rem;
+  background: #aa720b;
+  color: #ebbe25;
+  border: none;
+  border-radius: 30%;
+}
 
 .center-items {
   justify-content: center;
   align-items: center;
-}
-.flex {
-  display: flex;
-}
-.column {
-  flex-direction: column;
 }
 
 input[type="color"] {
@@ -181,10 +345,6 @@ input[type="color"] {
   background: inherit;
   border:  none;
   cursor:  pointer;
-
-}
-.hide {
-  display: none;
 }
 
 .no-scroll {
@@ -194,24 +354,7 @@ input[type="color"] {
   flex-wrap: wrap;
 }
 
-.btn.ctrl-btn.bold-true {
-  font-weight: bold;
-}
-
-.btn.ctrl-btn.no-bold {
-  font-weight: normal;
-}
 .space-between {
   justify-content: space-between;
 }
-
-.select-lang {
-  font-weight: bold;
-  border: none;
-  color: white;
-  background-color: black;
-  border-radius: 20px;
-  padding: 5px;
-}
-
 

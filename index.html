@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/font-awesome/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <title>Meme Generator</title>
+    <title>Na'aMeme Generator</title>
 </head>
 
 <body onload="init()">
@@ -14,8 +15,7 @@
     <header class="flex">
         <nav class="flex">
 
-
-            <h1>Na'aMeme Generator</h1>
+            <h1 data-trans="main-headline">Na'aMeme Generator</h1>
             <select class="select-lang" onchange="onSetLang(this.value)">
                 <option value="en">English</option>
                 <option value="he">עברית</option>
@@ -23,59 +23,45 @@
         </nav>
     </header>
 
-
-        <div class="input-container flex">
-
-                <option value="trump">
-                <option value="success">
-                <option value="racist">
-                <option value="dog">
-                <option value="cat">
-
-            </datalist>
-            </input>
-        </div>
-        
-        <div class="imgs-container">
-            <ul class="clean-list container"></ul>
-        </div>
-        <div id="popular searches" class="popular-searches-container flex"></div>
+    <main class="flex">
+        <h2 data-trans="select-img">Select an image to edit:</h2>
+        <section class="imgs-container">
+            <ul class="meme-list container"></ul>
+        </section>
     </main>
 
+    <footer>
+        <p>Made by Na'ama.Sho</p>
+    </footer>
 
     <div class="modal hide flex column space-between " id="editor-modal">
         <button class="return-btn btn center-items" onclick="closeModal()">&times;</button>
         <div class="modal-content flex">
 
-            <canvas id="meme-canvas" class="img-canvas">
-            </canvas>
+            <canvas id="meme-canvas" class="img-canvas"></canvas>
 
             <div class="textareas-container flex column center-items">
                 <div class="action-line-wrapper flex space-between">
 
-                    <button class="dwnld-btn btn">
-                        <a class="fas fa-download" onclick="onDownloadImg(this, 'meme.png')"></a>
-                    </button>
+                    <button class="download-btn btn"><a class="fas fa-download" onclick="onDownloadImg(this, 'meme.png')"></a></button>
+                        
                     <div class="browse-txts-container flex center-items"></div>
-                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                    </form>
 
-                    <div id="fb-root"></div>
-                    <div class="share-container share-btn btn hide"></div>
                 </div>
                 <div class="add-line-container flex column" id="add-line"></div>
             </div>
 
         </div>
 
-    </div>
+        <div class="centerer"></div>
+
     </div>
 
     <script src="js/utils-service.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/editor-service.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/i18service.js"></script>
+    <script src="js/i18n-service.js"></script>
 </body>
 
 </html>
