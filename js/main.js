@@ -1,10 +1,6 @@
 'use strict'
 
 var gImgs = [];
-
-
-// var MAP_KEY = 'popular imgs';
-// var gPopularImgsMap;
 var gCanvasImg;
 
 function init() {
@@ -28,9 +24,9 @@ function renderImgs(imgs) {
     elImgsContainer.innerHTML = strHtml;
 }
 
-
 function openModal(id) {
     var elModal = document.querySelector('#editor-modal');
+    // Reset text on text area when opening new meme:
     resetMemeModel(id)
     initCanvas(id);
     renderTextarea(0);
@@ -39,14 +35,12 @@ function openModal(id) {
     elBody.classList.add('no-scroll');
 }
 
-
 function closeModal() {
     var elModal = document.querySelector('#editor-modal');
     elModal.classList.add('hide');
     var elBody = document.querySelector('body');
     elBody.classList.remove('no-scroll');
 }
-
 
 function initCanvas(id) {
     var elCanvas = document.querySelector('#meme-canvas');
@@ -60,21 +54,20 @@ function initCanvas(id) {
     gCanvasImg.src = `meme-imgs/${id}.jpg`;
 }
 
-
-function setCanvas(txts = [], activeTxt = false) {
+// function setCanvas(txts = [], activeTxt = false) {
+function setCanvas(txts = []) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
     ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
     if (txts.length > 0) renderTxtsOnCanvas(txts);
-    if (activeTxt) renderFrag(activeTxt.textareaIdx);
 }
-
 
 function renderTxtsOnCanvas(txts) {
     txts.forEach(function (txt) {
         renderTxtOnCanvas(txt);
     });
 }
+
 
 
 function renderTxtOnCanvas(txt) {
@@ -87,10 +80,9 @@ function renderTxtOnCanvas(txt) {
     var x = getXforAlign(elCanvas.width, txt.align)
     ctx.fillText(txt.str, x, txt.line);
     ctx.lineWidth = txt.size / 35;
-
+// When clicking Bold the text will Stroke:
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 }
-
 
 function onInpTextarea(elTextarea) {
     var str = elTextarea.value;
@@ -114,13 +106,6 @@ function onInpTextarea(elTextarea) {
         bold: bold
     });
 }
-
-// function showFontMenu(idx) {
-//     document.querySelector(`.font-pick${idx}`).classList.toggle('hide');
-// }
-
-// for line 149:
-// <button class="ctrl-btn btn ctrl-font fas fa-font" onclick="showFontMenu(${idx})"></button>
 
 function onUpdateTxtBy(param, idx, type) {
     var elTextarea = document.querySelector(`#textarea${idx}`);
@@ -146,12 +131,10 @@ function renderTextarea(idx, add = false) {
     <button class="ctrl-btn btn ctrl-color">
     <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
     </button>
-    <button class="ctrl-btn btn ctrl-font-inc fas fa-plus-square" onclick="onUpdateTxtBy('fontInc', ${idx})"></button>
-    <button class="ctrl-btn btn ctrl-font-dec fas fa-minus-square" onclick="onUpdateTxtBy('fontDec', ${idx})"></button>
-    
+    <button class="ctrl-btn btn ctrl-font-inc fas fa-plus-circle" onclick="onUpdateTxtBy('fontInc', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-font-dec fas fa-minus-circle" onclick="onUpdateTxtBy('fontDec', ${idx})"></button>
     <button class="ctrl-btn btn ctrl-up fas fa-chevron-circle-up" onclick="onUpdateTxtBy('up', ${idx})"></button>
     <button class="ctrl-btn btn ctrl-down fas fa-chevron-circle-down" onclick="onUpdateTxtBy('down', ${idx})"></button>
-    
     <button class="ctrl-btn btn ctrl-bold ${bold} fas fa-bold" onclick="onUpdateTxtBy('bold', ${idx})"></button>
     <button class="ctrl-btn btn ctrl-left fas fa-align-left" onclick="onUpdateTxtBy('left', ${idx})"></button>
     <button class="ctrl-btn btn ctrl-center fas fa-align-center" onclick="onUpdateTxtBy('center', ${idx})"></button>
@@ -160,7 +143,7 @@ function renderTextarea(idx, add = false) {
     <ul class="meme-list font-pick-bar font-pick${idx} hide flex">
     <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
     <li class="pick-arial" onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
-    <li class="pick-times-nr" onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times NR</li>
+    <li class="pick-times-nr" onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">TimesNR</li>
     </ul>
     </div>
     </div> 
@@ -178,22 +161,11 @@ function renderTextarea(idx, add = false) {
     elBrowseTxtsContainer.innerHTML = strHtml;
 }
 
-
 function onDownloadImg(elLink, filename = 'meme.png') {
     filename = prompt('Enter File Name:');
     setCanvas(getMemeTxts());
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
-}
-
-
-function renderFrag(idx) {
-    var elCanvas = document.querySelector('#meme-canvas');
-    var ctx = elCanvas.getContext('2d');
-    var txt = getMemeTxts()[idx];
-    var line = txt.line;
-    var size = txt.size;
-    ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
 }
 
 // Translation:

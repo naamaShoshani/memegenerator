@@ -47,6 +47,17 @@ function updateFontSizeTxt(txt, diff) {
   txt.size += diff;
 }
 
+function getXforAlign(width, align) {
+  switch (align) {
+      case 'center':
+          return width * 0.5;
+      case 'left':
+          return 10;
+      case 'right':
+          return width - 10;
+  }
+}
+
 function updateTxtAt(param, idx, type) {
   var currTxt = gMeme.txts[idx];
   if (!currTxt) return;
@@ -99,10 +110,4 @@ function getCurrId() {
 
 function getTxtsLength() {
   return gMeme.txts.length;
-}
-
-function getMouseMatchTxtIdx(x, y) {
-  return gMeme.txts.findIndex(function (txt) {
-    return y >= txt.line - 13 - txt.size && y <= txt.line - 13;
-  })
 }
