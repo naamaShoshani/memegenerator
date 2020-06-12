@@ -309,3 +309,9 @@ footer {
   text-align: center;
   padding: 1px;
 }
+
+@media (max-width:320px) {
+  footer {
+    height: 70px;
+  }
+}
